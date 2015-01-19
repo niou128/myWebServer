@@ -1,12 +1,15 @@
 #include "../headers/ServerPostgreImpl.h"
 
-//Variables
+// ATTRIBUTE
+//////////////////////////////////////////////////////////
 int ServerPostgreImpl::value = 2;
 
-//Constructeurs / Destructeurs 
-ServerPostgreImpl::~ServerPostgreImpl() {}
-
-//Méthodes
-int ServerPostgreImpl::getNb(){
-	return 2;
+// CONSTRUCTOR / DESTRUCTOR
+//////////////////////////////////////////////////////////
+ServerPostgreImpl::~ServerPostgreImpl() 
+{
+  
 }
+
+// METHODS
+//////////////////////////////////////////////////////////

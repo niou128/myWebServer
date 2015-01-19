@@ -1,19 +1,17 @@
 #ifndef SERVERFACTORY_H
 #define SERVERFACTORY_H
 
-#include "Server.h"
-#include "ServerMYSQLImpl.h"
-#include "ServerPostgreImpl.h"
+#include "ServerDataBase.h"
 #include "main.h"
 
 class ServerFactory {
 private:
 	ServerFactory();
-	static Server* serverMYSQLInstance;
-	static Server* serverPostgreInstance;
+	static ServerDataBase* serverMYSQLInstance;
+	static ServerDataBase* serverPostgreInstance;
 
 public: 
-	static Server* getServerInstance(int sgbd);
+	static ServerDataBase* getServerInstance(int sgbd);
 	static void resetAll();
 };
 

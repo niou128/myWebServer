@@ -1,9 +1,13 @@
 #include "../headers/ServerFactory.h"
 
-Server* ServerFactory::serverMYSQLInstance = new ServerMYSQLImpl();
-Server* ServerFactory::serverPostgreInstance = new ServerPostgreImpl();
+// ATTRIBUTE
+//////////////////////////////////////////////////////////
+ServerDataBase* ServerFactory::serverMYSQLInstance = new ServerMYSQLImpl();
+ServerDataBase* ServerFactory::serverPostgreInstance = new ServerPostgreImpl();
 
-Server* ServerFactory::getServerInstance(int sgbd) {
+// METHODS
+//////////////////////////////////////////////////////////
+ServerDataBase* ServerFactory::getServerInstance(int sgbd) {
 
   if (sgbd == ServerMYSQLImpl::value) {
     return ServerFactory::serverMYSQLInstance;

@@ -1,13 +1,14 @@
 #ifndef SERVERPOSTGREIMPL_H
 #define SERVERPOSTGREIMPL_H
 
-#include "Server.h"
+#include "ServerDataBase.h"
+#include "Observer.h"
 
-class ServerPostgreImpl : public Server{
+class ServerPostgreImpl : public ServerDataBase, public Observer{
 public: 
-	~ServerPostgreImpl();
-	static int value;
-  int getNb();
+	virtual ~ServerPostgreImpl();
+  static int value;
+  void test() { cout << "ok" << endl; }
 };
 
 #endif

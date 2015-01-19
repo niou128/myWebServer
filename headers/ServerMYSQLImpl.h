@@ -1,13 +1,14 @@
 #ifndef SERVERMYSQLIMPL_H
 #define SERVERMYSQLIMPL_H
 
-#include "Server.h"
+#include "ServerDataBase.h"
+#include "Observer.h"
 
-class ServerMYSQLImpl : public Server{
+class ServerMYSQLImpl : public ServerDataBase, public Observer{
 public: 
 	~ServerMYSQLImpl();
-	static int value;
-  int getNb();
+  static int value;
+  void test() { cout << "ok" << endl; }
 };
 
 #endif
