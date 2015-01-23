@@ -18,13 +18,16 @@ private:
   socklen_t     crecsize;
 
   int           port;
-public:                                        
+
   Server(int p);
+  static Server* instance;
+public:                                        
   void      start();
   void      stop();
   bool      sAccept();
   string    sReceive();
   void      sendMessage(string line);
+  static Server*   getInstance();
 }; 
 
 #endif

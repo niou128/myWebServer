@@ -1,27 +1,42 @@
 #include            "../headers/main.h"
 
+void* tata(void* data);
+void* tata(void* data)
+{
+  Server* ss = Server::getInstance();
+  string message = "";
+
+  while(1){
+    message = ss->sReceive();
+    ss->sendMessage(message);
+  }
+
+  if (data == 0){}   
+
+  return NULL;
+}
+
 int             main()
 {
-  //Selon la config, on charge le serveur. Ici MYSQL
-  WebServerSocketImpl* ws =  new WebServerSocketImpl(new ServerMYSQLImpl());
 
-  //On lance l'observable
-  ws->run();
+  Server* ss = Server::getInstance();
 
-  delete ws;
+  ss->start();
 
-    /*ServerDataBase* object = ServerFactory::getServerInstance(ServerMYSQLImpl::value);
+  while(1){
+    //Si quelqu'un se connecte
+    if (ss->sAccept()){
 
-    if (object == 0){
-      cout << "Le serveur n'existe pas dans l'application" << endl;
-      return 0;
-    }
+      pthread_t thread;
+      pthread_create(&thread, NULL, tata, NULL);
+      ss->sendMessage("llllll");
+      pthread_join(thread, NULL);
 
-    //Notre code
-    cout << object->getNb() << endl;
-    cout << ServerFactory::getServerInstance(ServerPostgreImpl::value)->getNb() << endl;
-
-    ServerFactory::resetAll();*/
+    } 
+    usleep(1000); //Libérer le processeur
+  }
+  
+  ss->stop();
 
   return (EXIT_SUCCESS);
 }

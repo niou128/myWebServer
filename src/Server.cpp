@@ -2,7 +2,7 @@
 
 // ATTRIBUTE
 //////////////////////////////////////////////////////////
-
+Server* Server::instance = new Server(23);
 
 // CONSTRUCTOR / DESTRUCTOR
 //////////////////////////////////////////////////////////
@@ -14,6 +14,10 @@ Server::Server(int p)
   crecsize  = sizeof(csin);
 
   port      = p;
+}
+
+Server* Server::getInstance(){
+  return Server::instance;
 }
 
 // METHODS

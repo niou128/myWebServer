@@ -3,6 +3,7 @@
 void* maFonction(void* data);
 void* maFonction(void* data)
 {
+  cout << "test" << endl;
     if (data == 0){}   
     return NULL;
 }
@@ -24,9 +25,10 @@ Thread::~Thread()
 void Thread::start()
 {
     // Permet d'exécuter le fonction maFonction en parallèle
-    //pthread_create(&noThread, NULL, maFonction, NULL);
- 
- 
+  /*while (1){
+    pthread_create(&noThread, NULL, maFonction, NULL);
+  }
+    
     // Attend la fin du thread créé
-    //thread_join(noThread, NULL);
+    thread_join(noThread, NULL);*/
 }

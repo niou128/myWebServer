@@ -19,32 +19,36 @@ WebServerSocketImpl::~WebServerSocketImpl()
 //////////////////////////////////////////////////////////
 void WebServerSocketImpl::run() 
 {
-  Server* ss = new Server(23);
-  ss->start();
+  //Server* ss = new Server(23);
+  //ss->start();
 
   //ss->sAccept();
 
   string message = "";
 
-  while(!stopThread){
-    if (ss->sAccept()){
-      cout << "bienvenue" << endl;
+  //while(!stopThread){
+    //Si quelqu'un se connecte
+    //if (ss->sAccept()){
 
-      message = ss->sReceive();
+      //On crée un nouveau Thread qui traite la demande de l'utilisateur
 
-      this->notify(message);
+
+     //new Thread(this);
+      //message = ss->sReceive();
+
+      //this->notify(message);
 
       //TEST
       //Pour couper la connexion
-      /*if (message.compare("0\r\n") == 0){
+      /*if (message.compare("stop\r\n") == 0){
         this->setStopThread();
       }
       cout << " Recu :" << message << endl;*/
-    } 
-    usleep(1000); //Libérer le processeur
-  }
+    //} 
+    //usleep(1000); //Libérer le processeur
+  //}
   
-  ss->stop(); 
+  //ss->stop(); 
 }
 
 
