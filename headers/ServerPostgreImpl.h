@@ -3,12 +3,13 @@
 
 #include "ServerDataBase.h"
 #include "Observer.h"
+#include "Request.h"
 
 class ServerPostgreImpl : public ServerDataBase, public Observer{
 public: 
 	virtual ~ServerPostgreImpl();
   static int value;
-  void test() { cout << "ok" << endl; }
+  void execute(Request* req);
 };
 
 #endif

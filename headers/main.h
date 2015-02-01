@@ -8,12 +8,11 @@
   #include "ServerPostgreImpl.h"
   #include "FluxStream.h"
   #include "FileStreamImpl.h"
-  #include "Observable.h"
-  #include "Runnable.h"
-  #include "Thread.h"
-  #include "WebServerSocketImpl.h"
-  #include "Observer.h"
   #include "Server.h"
   #include "Socket.h"
+  #include "Request.h"
+  #include "Observer.h"
+  #include "Observable.h"
+  #include "ClientSocketImpl.h"
 
 #endif

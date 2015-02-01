@@ -2,7 +2,7 @@
 
 // ATTRIBUTE
 //////////////////////////////////////////////////////////
-Server* Server::instance = new Server(23);
+Server* Server::instance = new Server(1985);
 
 // CONSTRUCTOR / DESTRUCTOR
 //////////////////////////////////////////////////////////
@@ -22,14 +22,16 @@ Server* Server::getInstance(){
 
 // METHODS
 //////////////////////////////////////////////////////////
-void Server::start()
+bool Server::start()
 {
 //Créer une socket
   sock      = socket(AF_INET, SOCK_STREAM, 0);
 
+  //initialise les log
+  doc       = Log();
+
   //Si la socket est valide
   if (sock != INVALID_SOCKET) {
-    cout << "La socket " << sock << " est maintenant ouverte en mode TCP/IP" << endl;
 
     sin.sin_addr.s_addr = htonl(INADDR_ANY);  
     sin.sin_family = AF_INET;                
@@ -38,22 +40,32 @@ void Server::start()
     //Si la socket fonctionne
     if (bind(sock, (SOCKADDR*)&sin, recsize) != SOCKET_ERROR) {
       if (listen(sock, 5) != SOCKET_ERROR) {
-        cout << "Patientez pendant que le client se connecte sur le port " << port ;
-        //csock = accept(sock, (SOCKADDR*)&csin, &crecsize);
-        cout << "Un client se connecte avec la socket " << csock << " de :" << htons(csin.sin_port) << endl;
+        doc.write("Les clients peuvent maintenant se connecter.");
+        //cout << "Les clients peuvent maintenant se connecter." << endl ;
     
         crecsize = sizeof csin;
+        this->is_start = true;
+        return true;
       }
       else 
       {
-        cout << "error 2" << endl;
+        doc.write("Erreur lors du listen.");
+        //cout << "Erreur lors du listen." << endl;
       }
     }
     else 
     {
-      cout << "error 1" << endl;
+      doc.write("Impossible de créer la socket. Essayez de changer de port.");
+      //cout << "Impossible de créer la socket. Essayez de changer de port." << endl;
     }
   }
+
+  return false;
+}
+
+bool Server::isStart()
+{
+  return this->is_start;
 }
 
 void Server::stop()
@@ -71,13 +83,15 @@ bool Server::sAccept()
   if (csock == -1){
     return false;
   }
+
+  cout << "Un nouveau client vient d'arriver." << endl;
   return true;
 }
 
 string Server::sReceive()
 {
-  char buffer[30] = "";
-  recv(csock, buffer, 30, 0);
+  char buffer[100000] = "";
+  recv(csock, buffer, 100000, 0);
 
   return buffer;
 }

@@ -3,6 +3,7 @@
 
 #include "includes.h"
 #include "Socket.h"
+#include "log.h"
 
 //Tuto utilisté : http://sdz.tdct.org/sdz/les-sockets.html
 
@@ -16,13 +17,16 @@ private:
   t_sockaddr_in csin;
   SOCKET        csock;
   socklen_t     crecsize;
-
+  Log           doc;
+    
   int           port;
+  int           is_start;
 
   Server(int p);
   static Server* instance;
 public:                                        
-  void      start();
+  bool      start();
+  bool      isStart();
   void      stop();
   bool      sAccept();
   string    sReceive();

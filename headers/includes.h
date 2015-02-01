@@ -2,6 +2,7 @@
 #define INCLUDE_H
 
 #include <iostream>
+#include <regex>
 #include <string>
 #include <list>
 #include <vector>
@@ -35,5 +36,12 @@ typedef           struct s_sockaddr_in
     struct   in_addr  sin_addr;
     char              sin_zero[8];
 }                 t_sockaddr_in;
+
+//Pour le Json
+#include "../include/rapidjson/document.h"         // rapidjson's DOM-style API
+#include "../include/rapidjson/prettywriter.h"     // for stringify JSON
+#include "../include/rapidjson/filestream.h"  
+
+using namespace rapidjson;
 
 #endif

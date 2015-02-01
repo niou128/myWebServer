@@ -2,7 +2,6 @@
 
 // CONSTRUCTOR / DESTRUCTOR
 //////////////////////////////////////////////////////////
-
 Observable::~Observable()
 {
   iterator itb = this->m_list.begin();
@@ -16,26 +15,27 @@ Observable::~Observable()
 
 // METHODS
 //////////////////////////////////////////////////////////
+//Ajoute un observeur
 void Observable::add(Observer* observer)
 {
   this->m_list.push_back(observer);
 }
 
-void Observable::notify(string& data)
+//Notifie tous les observeurs
+void Observable::notify(Request* req)
 {
-  cout << "notify" << endl;
-  if (data == "test") {
-    //
-  }
+  cout << "Tous les observeurs sont en train d'être notifiés." << endl;
+
   iterator itb = this->m_list.begin();
   const_iterator ite = this->m_list.end();
 
   for(; itb!=ite; ++itb)
   {
-    (*itb)->test();
+    (*itb)->execute(req);
   }
 }
 
+//Supprime un observeur
 void Observable::remove(Observer* observer)
 {
   iterator it= find(m_list.begin(), m_list.end(), observer);

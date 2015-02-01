@@ -13,3 +13,9 @@ ServerPostgreImpl::~ServerPostgreImpl()
 
 // METHODS
 //////////////////////////////////////////////////////////
+//Execute la requete envoyée
+void ServerPostgreImpl::execute(Request* req) 
+{
+  cout << "La requêtre est executée par le serveur Postgre." << endl;
+  if (req->getMethod() == ""){}
+}

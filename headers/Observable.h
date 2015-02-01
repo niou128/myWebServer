@@ -2,6 +2,7 @@
 #define OBSERVABLE_H
 
 #include "includes.h"
+#include "Request.h"
 #include "Observer.h"
 
 class Observable {
@@ -12,7 +13,7 @@ private:
 public: 
   ~Observable();
   void add(Observer* observer);
-  void notify(string& data);
+  void notify(Request* req);
   void remove(Observer* observer);
 };
 

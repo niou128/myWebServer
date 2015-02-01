@@ -19,24 +19,8 @@ void* tata(void* data)
 int             main()
 {
 
-  Server* ss = Server::getInstance();
-
-  ss->start();
-
-  while(1){
-    //Si quelqu'un se connecte
-    if (ss->sAccept()){
-
-      pthread_t thread;
-      pthread_create(&thread, NULL, tata, NULL);
-      ss->sendMessage("llllll");
-      pthread_join(thread, NULL);
-
-    } 
-    usleep(1000); //Libérer le processeur
-  }
-  
-  ss->stop();
+  ClientSocketImpl* clientsocket = new ClientSocketImpl(new ServerMYSQLImpl());
+  clientsocket->run();
 
   return (EXIT_SUCCESS);
 }
